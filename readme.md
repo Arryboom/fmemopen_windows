@@ -3,12 +3,12 @@ a lib to provide **FILE\*** handler based on memory backend for fread,fwrite etc
 
 
 # Usage
-1.include the header.
-2.include the libary depend on your platform32/64.
-3.using ``fmemopen``.
->it's readonly once you created.
+1.include the header.  
+2.include the libary depend on your platform32/64.  
+3.using ``fmemopen``.  
+>it's readonly once you created.  
 
-###sample:
+### sample:
 ```
 #include <stdio.h>
 #include "libfmemopen.h"
