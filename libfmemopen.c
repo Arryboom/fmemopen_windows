@@ -23,7 +23,7 @@ FILE *fmemopen(void *buf, size_t len, const char *type)
 		return NULL;
 	if (fd == -1)
 		return NULL;
-	fp = _fdopen(fd, "w+");
+	fp = _fdopen(fd, "wb+");
 	if (!fp) {
 		_close(fd);
 		return NULL;
