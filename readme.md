@@ -6,7 +6,6 @@ a lib to provide **FILE\*** handler based on memory backend for fread,fwrite etc
 1.include the header.  
 2.include the libary depend on your platform32/64.  
 3.using ``fmemopen``.  
->it's readonly once you created.  
 
 ### sample:
 ```
@@ -31,6 +30,37 @@ int main(){
 }
 ```
 
+
+
+A bad example:
+>there may got some security risk in this version,look the code below.I'll dig it later.
+
+```
+#include <stdio.h>
+#include "libfmemopen.h"
+
+int main(){
+	FILE * fh;
+	char buf[1024] = "jacksonsonsosnososnsljgweoigjiedjgkdrjshnjklfcgsdntildhgd fjklhndrhpadk thiohkaerheil ghksbjd ghbjcghkwe4pt hphq tgjh";
+	//put your stuff in buffer
+	fh = fmemopen(buf, 1024, "wb");
+	printf("FileHandler:%d\n", fh);
+	getchar();
+	fseek(fh, 0, SEEK_SET);
+	char ddbuf[1028] = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaABB";
+	int johnlet=fwrite(ddbuf, 1028, 1, fh);
+	printf("actually_write_long:%d\n", johnlet);
+	fseek(fh, 0, SEEK_SET);
+	char * bux[1030];
+	int readbytes = fread(bux, 1, 1030, fh);
+	printf("\nbuffer:%s\n", bux);
+	printf("Readed_bytes:%d\n", readbytes);
+	printf("\n\nTheOriginalBuf:%s", buf);
+	getchar();
+	fclose(fh);//don't forgot fclose it,call fclose on a handler created by fmemopen_windows libary will automatically free it(include deep layer).
+	return 0;
+}
+```
 
 
 ---
