@@ -63,6 +63,51 @@ int main(){
 ```
 
 
+```
+#include <stdio.h>
+#include "libfmemopen.h"
+
+int main(){
+	FILE * fh;
+	char buf[1024] = "jacksonsonsosnososnsljgweoigjiedjgkdrjshnjklfcgsdntildhgd fjklhndrhpadk thiohkaerheil ghksbjd ghbjcghkwe4pt hphq tgjh";
+	//put your stuff in buffer
+	fh = fmemopen(buf, 1024, "wb");
+	printf("FileHandler:%d\n", fh);
+	//sizer
+
+	fseek(fh, 0, SEEK_END);   ///将文件指针移动文件结尾
+	long size = ftell(fh);
+	printf("size:%d\n", size);
+	//size
+	getchar();
+	fseek(fh, 0, SEEK_SET);
+	char ddbuf[1028] = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaABBCCDDEE";
+	int johnlet=fwrite(ddbuf, 1028, 1, fh);
+	//size
+	printf("actually_write_long:%d\n", johnlet);
+	fseek(fh, 0, SEEK_END);   ///将文件指针移动文件结尾
+	size = ftell(fh);
+	printf("size:%d\n", size);
+	//size
+	fflush(fh);
+	//size
+	fseek(fh, 0, SEEK_END);   ///将文件指针移动文件结尾
+	size = ftell(fh);
+	printf("size:%d\n", size);
+	//size
+	fseek(fh, 0, SEEK_SET);
+
+	char * bux[1030];
+	int readbytes = fread(bux, 1, 1030, fh);
+	printf("\nbuffer:%s\n", bux);
+	printf("Readed_bytes:%d\n", readbytes);
+	printf("\n\nTheOriginalBuf:%s", buf);
+	getchar();
+	fclose(fh);//don't forgot fclose it,call fclose on a handler created by fmemopen_windows libary will automatically free it(include deep layer).
+	return 0;
+}
+```
+
 ---
 
 during these days I've been try alot way to simulate fmemopen on windows,this lib is the best solution I found at the end.
