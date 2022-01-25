@@ -1,13 +1,2 @@
-﻿Build started 2019/11/7 2:28:48.
-     1>Project "Z:\fmemopen_windows\fmemopen_windows.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         D:\VS2013\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TC /errorReport:prompt libfmemopen.c
-         libfmemopen.c
-       Lib:
-         D:\VS2013\VC\bin\x86_amd64\Lib.exe /OUT:"Z:\fmemopen_windows\x64\Release\fmemopen_windows.lib" /NOLOGO /MACHINE:X64 /LTCG x64\Release\libfmemopen.obj
-         fmemopen_windows.vcxproj -> Z:\fmemopen_windows\x64\Release\fmemopen_windows.lib
-     1>Done Building Project "Z:\fmemopen_windows\fmemopen_windows.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:00.77
+﻿  libfmemopen.c
+  fmemopen_windows.vcxproj -> C:\Users\jj\Desktop\fmemopen_windows-master\x64\Release\fmemopen_windows.lib

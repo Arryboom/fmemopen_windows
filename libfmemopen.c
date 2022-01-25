@@ -1,9 +1,10 @@
-#include <stdio.h>
 #include <windows.h>
 #include <share.h>
 #include <io.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include "libfmemopen.h"
+/* https://github.com/Arryboom/fmemopen_windows  */
 
 FILE *fmemopen(void *buf, size_t len, const char *type)
 {
